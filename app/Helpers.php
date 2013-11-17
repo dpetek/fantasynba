@@ -81,7 +81,6 @@ class Helpers
         $pos = strpos($dateString, 'T');
         $dateString = substr($dateString, 0, $pos);
         $date = DateTime::createFromFormat('Y-m-d', $dateString);
-        $date->setTimezone(new DateTimeZone(Config::get('timezone')));
         return $date->format('l, m/d/Y');
     }
 
