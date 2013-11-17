@@ -36,6 +36,32 @@ class MongoHelper
         }
     }
 
+    public static function getWeekFantasyMatches($weekId)
+    {
+        $connection = self::connection('matches');
+        $data = $connection->findOne(array('week_id' => $weekId));
+
+        if (!empty($data)) {
+            return new WeekMatches($data);
+        }
+        return false;
+    }
+
+    public static function addFantasyMatch($week, $player1, $player2)
+    {
+        $object = self::getWeekFantasyMatches($week);
+
+        if (!$object) {
+            $object = new WeekMatches(array(
+                'week_id' => $week,
+                'matches' => array()
+            ));
+        }
+        $object->addMatch($player1, $player2);
+        $connection = self::connection('matches');
+        $connection->save($object->getData());
+    }
+
     /**
      * @param $dbName
      * @return MongoCollection

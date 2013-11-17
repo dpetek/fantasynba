@@ -17,6 +17,21 @@ spl_autoload_register(
 
 Config::init(__CONFIG_PATH . '/Config.json');
 
+if (isset($_POST['post-action'])) {
+    if ($_POST['post-action'] == 'add-match') {
+
+        $player1 = $_POST['add-player1'];
+        $player2 = $_POST['add-player2'];
+        $week = $_POST['add-week'];
+
+        MongoHelper::addFantasyMatch($week, $player1, $player2);
+
+        header("Location: ". $_SERVER['REQUEST_URI']);
+        exit;
+    }
+}
+
+
 $route = Helpers::getRoute($_SERVER['REQUEST_URI']);
 
 $weekId = isset($_GET['weekId']) ? $_GET['weekId'] : WeeklyStats::currentWeekId();

@@ -93,5 +93,10 @@ class Helpers
 
         return '<span class="label label-info">' . $time->format('l, m/d/Y') . '</span> - <span class="label label-info">' . $end->format('l, m/d/Y') . '</span>';
     }
+    public static function getPlayers()
+    {
+        $draw = Config::get('draw');
+        return array_keys($draw);
+    }
 }
 

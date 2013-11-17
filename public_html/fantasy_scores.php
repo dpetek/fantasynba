@@ -1,4 +1,5 @@
 <?php $fantasyStats = FantasyStats::createForWeek(WeeklyStats::loadByWeekID($weekId)); ?>
+
 <table class="table table-hover">
     <thead>
         <tr>

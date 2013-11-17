@@ -70,6 +70,18 @@ class FantasyStats
         return $this->teams;
     }
 
+    public function getForPlayer($playerName)
+    {
+        /** @var PlayerStats $player */
+        foreach($this->players as $player)
+        {
+            if ($player->getPlayerName() == $playerName) {
+                return $player;
+            }
+        }
+        return null;
+    }
+
 }
 
  
