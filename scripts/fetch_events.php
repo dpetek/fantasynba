@@ -1,7 +1,8 @@
 <?php
 
-define('__APP_PATH', realpath('../app/'));
-define('__CONFIG_PATH', realpath('../config/'));
+define('__APP_PATH', realpath(__DIR__ . '/../app/'));
+define('__CONFIG_PATH', realpath(__DIR__ . '/../config/'));
+
 
 //init autoloader
 
