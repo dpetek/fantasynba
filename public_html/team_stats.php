@@ -2,7 +2,7 @@
 <table class="table table-hover">
     <thead>
     <tr>
-        <th>Player name</th>
+        <th>Team name</th>
         <th>Wins this week</th>
         <th>Loses this week</th>
         <th>Win percentage</th>
