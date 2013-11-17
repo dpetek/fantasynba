@@ -25,11 +25,12 @@
 <hr />
 <h1 class="well">
     Week: <?php echo Helpers::getWeekString($weekId); ?>
-    <?php if ($weekId == WeeklyStats::currentWeekId()): ?>
-        <span class="label label-success"> - Current week</span>
-    <?php endif ?>
-
 </h1>
+<h4>
+    <?php if ($weekId == WeeklyStats::currentWeekId()): ?>
+        <span class="label label-success">Active week! Good luck!</span>
+    <?php endif ?>
+</h4>
 <hr />
 
 <ul class="nav nav-tabs">
