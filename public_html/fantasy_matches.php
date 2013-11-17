@@ -17,7 +17,7 @@
                 <td style="text-align: center">vs</td>
                 <td style="text-align: center" class="<?php echo $player2Stats->getRatio() > $player1Stats->getRatio() ? 'success' : ''; ?>">
                     <?php echo $match['player2']; ?>
-                    <span class='label label-info'><?php echo $player1Stats->getRatio(); ?></span>
+                    <span class='label label-info'><?php echo $player2Stats->getRatio(); ?></span>
                 </td>
             </tr>
         <?php endforeach ?>
