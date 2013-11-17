@@ -36,6 +36,10 @@ $route = Helpers::getRoute($_SERVER['REQUEST_URI']);
 
 $weekId = isset($_GET['weekId']) ? $_GET['weekId'] : WeeklyStats::currentWeekId();
 
+if (!in_array($weekId, Helpers::$weeks)) {
+    $weekId = WeeklyStats::currentWeekId();
+}
+
 switch($route) {
     case '':
     case 'weekly':

@@ -12,12 +12,20 @@
 
                 <td style="text-align: center" class="<?php echo $player1Stats->getRatio() > $player2Stats->getRatio() ? 'success' : ''; ?>">
                     <?php echo $match['player1']; ?>
-                    <span class='label label-info'><?php echo $player1Stats->getRatio(); ?></span>
+                    <div>
+                        <span class='label label-info'>Win percentage: <?php echo $player1Stats->getRatio(); ?></span>
+                        <span class='label label-success'>Wins: <?php echo $player1Stats->getWins(); ?></span>
+                        <span class='label label-danger'>Lost: <?php echo $player1Stats->getLoses(); ?></span>
+                    </div>
                 </td>
                 <td style="text-align: center">vs</td>
                 <td style="text-align: center" class="<?php echo $player2Stats->getRatio() > $player1Stats->getRatio() ? 'success' : ''; ?>">
                     <?php echo $match['player2']; ?>
-                    <span class='label label-info'><?php echo $player2Stats->getRatio(); ?></span>
+                    <div>
+                        <span class='label label-info'>Win percentage: <?php echo $player2Stats->getRatio(); ?></span>
+                        <span class='label label-success'>Wins: <?php echo $player2Stats->getWins(); ?></span>
+                        <span class='label label-danger'>Lost: <?php echo $player2Stats->getLoses(); ?></span>
+                    </div>
                 </td>
             </tr>
         <?php endforeach ?>
