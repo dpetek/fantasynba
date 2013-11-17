@@ -29,9 +29,9 @@ foreach($thisWeek->scoresPerDay() as $day)
 {
     $time = DateTime::createFromFormat(DateTime::ISO8601, $day['events_date']);
     $now = new DateTime();
-    if ($time > $now) {
-        break;
-    }
+//    if ($time > $now) {
+//        break;
+//    }
 
     foreach($day['event'] as $event) {
         $fromDb = MongoHelper::getEvent($event['event_id']);
