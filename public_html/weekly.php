@@ -23,7 +23,13 @@
 <?php endif ?>
 
 <hr />
-<h1 class="well">Week: <?php echo Helpers::getWeekString($weekId); ?></h1>
+<h1 class="well">
+    Week: <?php echo Helpers::getWeekString($weekId); ?>
+    <?php if ($weekId == WeeklyStats::currentWeekId()): ?>
+        <span class="label label-success"> - Current week</span>
+    <?php endif ?>
+
+</h1>
 <hr />
 
 <ul class="nav nav-tabs">
