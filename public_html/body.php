@@ -29,7 +29,6 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Weekly stats</a></li>
-					<li><a href="#">Overall stats</a></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</nav>

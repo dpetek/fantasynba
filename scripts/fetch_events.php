@@ -29,21 +29,20 @@ foreach($thisWeek->scoresPerDay() as $day)
 {
     $time = DateTime::createFromFormat(DateTime::ISO8601, $day['events_date']);
     $now = new DateTime();
-//    if ($time > $now) {
-//        break;
-//    }
+    if ($time > $now) {
+        break;
+    }
 
     foreach($day['event'] as $event) {
         $fromDb = MongoHelper::getEvent($event['event_id']);
-
-        if (!$fromDb) {
+        if (!$fromDb || !isset($fromDb['away_totals'])) {
+	    MongoHelper::deleteEventsById($event['event_id']);
             $info = $api->getEventInfo($event['event_id']);
-            if (!$info ) exit(1);
+	    if (!$info) continue;
             $eventObject = new Event($info);
             $eventObject->setEventId($event['event_id']);
             MongoHelper::saveEvent($eventObject);
-
-            usleep(400000);
+		sleep(11);
         }
     }
 }

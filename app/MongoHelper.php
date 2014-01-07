@@ -24,6 +24,14 @@ class MongoHelper
         $connection = self::connection('events');
         $connection->save($event->getData());
     }
+	
+	public static function deleteEventsById($eventId)
+	{
+		if (!$eventId ) return;
+		$connection = self::connection('events');
+		$connection->remove(array('event_id' => $eventId), array("justOne" => false));
+	
+	}
 
     public static function loadTeamById($teamId)
     {

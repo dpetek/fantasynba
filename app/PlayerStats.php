@@ -29,6 +29,7 @@ class PlayerStats
         $awayTeam = $event['away_team'];
 
         if (in_array($homeTeam->getTeamId(), $this->teamIds)) {
+		if (!$info->getHomeScore()) return ;
             if ($info->getHomeScore() > $info->getAwayScore()) {
                 $this->wins ++;
             } else {
@@ -37,6 +38,7 @@ class PlayerStats
         }
 
         if (in_array($awayTeam->getTeamId(), $this->teamIds)) {
+		if (!$info->getHomeScore()) return;
             if ($info->getAwayScore() > $info->getHomeScore()) {
                 $this->wins ++;
             } else {
