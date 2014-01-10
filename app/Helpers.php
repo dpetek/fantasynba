@@ -91,7 +91,7 @@ class Helpers
         $end = DateTime::createFromFormat('m_d_Y',$date);
         $end->add(new DateInterval('P6D'));
 
-        return '<span class="label label-info">' . $time->format('l, m/d/Y') . '</span> - <span class="label label-info">' . $end->format('l, m/d/Y') . '</span>';
+        return '<span class="">' . $time->format('l, m/d/Y') . '</span> - <span class="">' . $end->format('l, m/d/Y') . '</span>';
     }
     public static function getPlayers()
     {

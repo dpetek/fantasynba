@@ -22,7 +22,7 @@
 
 <hr />
 <h1 class="well">
-    Week: <?php echo Helpers::getWeekString($weekId); ?>
+    <?php echo Helpers::getWeekString($weekId); ?>
 </h1>
 <h4>
     <?php if ($weekId == WeeklyStats::currentWeekId()): ?>
