@@ -11,7 +11,9 @@
     </thead>
     <?php foreach($fantasyStats->getPlayers() as $player): ?>
         <tr>
-            <td><?php echo $player->getPlayerName(); ?></td>
+            <td>
+		<img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($player->getPlayerName()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+		<?php echo $player->getPlayerName(); ?></td>
             <td><?php echo $player->getWins(); ?></td>
             <td><?php echo $player->getLoses(); ?></td>
             <td><?php echo $player->getRatio(); ?></td>

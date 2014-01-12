@@ -2,7 +2,7 @@
 
 define('__APP_PATH', realpath(__DIR__ . '/../app/'));
 define('__CONFIG_PATH', realpath(__DIR__ . '/../config/'));
-
+define('__HOST', $_SERVER['HTTP_HOST']);
 
 //init autoloader
 
@@ -69,6 +69,13 @@ switch($route) {
         $activePage = 'weekly';
         $activeSubpage = 'teams';
         break;
+    case 'overall':
+    case 'overall/fantasy':
+	$page = 'weekly.php';
+	$subpage = 'fantasy_overall.php';
+	$activePage = 'overall';
+	$activeSubpage = 'overal_fantasy';
+	break;
 }
 
 $page = 'weekly.php';

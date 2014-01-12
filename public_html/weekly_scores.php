@@ -8,11 +8,15 @@
     <?php foreach($day['event'] as $event): ?>
         <tr>
             <td class="<?php echo (isset($event['info']) && $event['info'] instanceof Event && $event['info']->getHomeScore() > $event['info']->getAwayScore()) ? 'success' : ''; ?>">
-                <span class='label label-info' style="min-width: 120px; display:inline-block"><?php echo $event['home_team']->getBackplanePlayer(); ?></span>
+                <span class='' style="min-width: 120px; display:inline-block">
+			<img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['home_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px;'/>
+		</span>
                 <?php echo $event['home_team']->getFullName(); ?>
             </td>
             <td class="<?php echo (isset($event['info']) && $event['info'] instanceof Event && $event['info']->getAwayScore() > $event['info']->getHomeScore()) ? 'success' : ''; ?>">
-                <span class='label label-warning' style="min-width: 120px; display:inline-block"><?php echo $event['away_team']->getBackplanePlayer(); ?></span>
+                <span class='' style="min-width: 120px; display:inline-block">
+			<img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['away_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+		</span>
                 <?php echo $event['away_team']->getFullName(); ?>
             </td>
             <td>

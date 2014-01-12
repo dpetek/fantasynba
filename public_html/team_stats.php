@@ -11,7 +11,8 @@
     <?php foreach($fantasyStats->getTeams() as $team): ?>
         <tr>
             <td>
-                <span class='label label-info' style="min-width: 120px; display:inline-block"><?php echo $team->getTeamInfo()->getBackplanePlayer(); ?></span>
+                <span class='' style="min-width: 120px; display:inline-block">
+		<img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($team->getTeamInfo()->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/></span>
                 <?php echo $team->getTeamInfo()->getFullName(); ?>
             </td>
             <td><?php echo $team->getWins(); ?></td>

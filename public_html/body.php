@@ -2,7 +2,7 @@
 	<head>
 		<title>Backplane NBA Fantasy</title>
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
-		<link href="style.css" rel="stylesheet">
+		<link href="<?php echo $__HOST . '/style.css'; ?>" rel="stylesheet">
 
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 		<script type="text/javascript">

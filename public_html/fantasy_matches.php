@@ -11,21 +11,24 @@
             <tr>
 
                 <td style="text-align: center" class="<?php echo $player1Stats->getRatio() > $player2Stats->getRatio() ? 'success' : ''; ?>">
+		<img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($match['player1']) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                     <?php echo $match['player1']; ?>
-                    <div>
-                        <span class='label label-info'>Win percentage: <?php echo $player1Stats->getRatio(); ?></span>
-                        <span class='label label-success'>Wins: <?php echo $player1Stats->getWins(); ?></span>
-                        <span class='label label-danger'>Lost: <?php echo $player1Stats->getLoses(); ?></span>
-                    </div>
+                    <ul>
+                        <li><span class='label label-info'>Win percentage: <?php echo $player1Stats->getRatio(); ?></span></li>
+                        <li><span class='label label-success'>Wins: <?php echo $player1Stats->getWins(); ?></span></li>
+                        <li><span class='label label-danger'>Lost: <?php echo $player1Stats->getLoses(); ?></span></li>
+                    </ul>
                 </td>
                 <td style="text-align: center">vs</td>
                 <td style="text-align: center" class="<?php echo $player2Stats->getRatio() > $player1Stats->getRatio() ? 'success' : ''; ?>">
+			<img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($match['player2']) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+
                     <?php echo $match['player2']; ?>
-                    <div>
-                        <span class='label label-info'>Win percentage: <?php echo $player2Stats->getRatio(); ?></span>
-                        <span class='label label-success'>Wins: <?php echo $player2Stats->getWins(); ?></span>
-                        <span class='label label-danger'>Lost: <?php echo $player2Stats->getLoses(); ?></span>
-                    </div>
+                    <ul class="list-unstyled">
+                        <li><span class='label label-info'>Win percentage: <?php echo $player2Stats->getRatio(); ?></span></li>
+                        <li><span class='label label-success'>Wins: <?php echo $player2Stats->getWins(); ?></span></li>
+                        <li><span class='label label-danger'>Lost: <?php echo $player2Stats->getLoses(); ?></span></li>
+                    </ul>
                 </td>
             </tr>
         <?php endforeach ?>

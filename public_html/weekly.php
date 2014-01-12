@@ -1,35 +1,34 @@
-<ul class="pager">
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <div class="btn-group btn-group-lg">
+            <button class="btn btn-default <?php echo !Helpers::getPreviousWeek($weekId) ? 'disabled' : ''; ?>" type="button"
+		onclick="location.href='<?php echo Helpers::getPreviousWeek($weekId) ? Helpers::buildUrl('weekly', $activeSubpage, array('weekId' => Helpers::getPreviousWeek($weekId))) : '#'; ?>';">
+                <em class="glyphicon glyphicon-arrow-left"></em> Previous week
+            </button>
+            <button class="btn btn-success <?php echo $weekId == WeeklyStats::currentWeekId() ? 'disabled' : ''; ?>" type="button" 
+		onclick="location.href='<?php echo Helpers::buildUrl('weekly', $activeSubpage, array('weekId' => WeeklyStats::currentWeekId())); ?>';">
+                This week
+            </button>
+            <button class="btn btn-default <?php echo !Helpers::getNextWeek($weekId) ? 'disabled' : ''; ?>" type="button"
+		onclick="location.href='<?php echo Helpers::getNextWeek($weekId) ? Helpers::buildUrl('weekly', $activeSubpage, array('weekId' => Helpers::getNextWeek($weekId))) : '#'; ?>';">
+                <em class="glyphicon glyphicon-arrow-right"></em> Next week
+            </button>
+        </div>
+    </div>
+</div>
 
-    <li class="previous <?php echo (!Helpers::getPreviousWeek($weekId)) ? 'disabled' : ''; ?>">
-        <a href="<?php echo Helpers::getPreviousWeek($weekId) ? Helpers::buildUrl('weekly', $activeSubpage, array('weekId' => Helpers::getPreviousWeek($weekId))) : '#'; ?>">
-            &larr; Previous week
-        </a>
-    </li>
-
-    <li class="next <?php echo (!Helpers::getNextWeek($weekId)) ? 'disabled' : ''; ?>">
-        <a href="<?php echo Helpers::getNextWeek($weekId) ? Helpers::buildUrl('weekly', $activeSubpage, array('weekId' => Helpers::getNextWeek($weekId))) : '#'; ?>">
-            Next week &rarr;
-        </a>
-    </li>
-</ul>
-<?php if ($weekId != WeeklyStats::currentWeekId()): ?>
-    <span class="span4">
-    <a href="<?php echo Helpers::buildUrl('weekly', $activeSubpage, array('weekId' => WeeklyStats::currentWeekId())); ?>">
-        <button type="button" class="btn btn-success">Go To Current Week</button>
-    </a>
-</span>
-<?php endif ?>
-
-<hr />
-<h1 class="well">
-    <?php echo Helpers::getWeekString($weekId); ?>
-</h1>
-<h4>
-    <?php if ($weekId == WeeklyStats::currentWeekId()): ?>
-        <span class="label label-success">Active week! Good luck!</span>
-    <?php endif ?>
-</h4>
-<hr />
+<div class="row clearfix">
+	<div class="col-md-12 column">
+		<div class="page-header">
+			<h1>
+				<?php echo Helpers::getWeekString($weekId); ?> 
+				<?php if($weekId == WeeklyStats::currentWeekId()): ?>
+					<small> (Current week) </small>
+				<?php endif ?>
+			</h1>
+		</div>
+	</div>
+</div>
 
 <ul class="nav nav-tabs">
     <li class="<?php echo $activeSubpage =='scores' ? 'active' : ''; ?>"><a href="<?php echo Helpers::buildUrl('weekly', 'scores', array('weekId' => $weekId)); ?>">Scores</a></li>
