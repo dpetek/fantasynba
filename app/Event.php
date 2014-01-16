@@ -16,10 +16,12 @@ class Event
 
     public function getHomeScore()
     {
+        if (!isset($this->data['home_totals'])) return 0;
         return $this->data['home_totals']['points'];
     }
     public function getAwayScore()
     {
+        if (!isset($this->data['away_totals'])) return 0;
         return $this->data['away_totals']['points'];
     }
 

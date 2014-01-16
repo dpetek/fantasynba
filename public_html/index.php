@@ -49,45 +49,31 @@ if (!in_array($weekId, Helpers::$weeks)) {
     $weekId = WeeklyStats::currentWeekId();
 }
 
+// do routing
+
+
+
 switch($route) {
     case '':
-    case 'weekly':
-    case 'weekly/scores':
-        $page = 'weekly.php';
-        $subpage = 'weekly_scores.php';
-        $activePage = 'weekly';
-        $activeSubpage = 'scores';
+    case 'weeklyFantasy':
+        $page = 'fantasy_matches.php';
+        $activePage = 'weeklyFantasy';
         break;
-    case 'weekly/fantasy_stats':
-    case 'weekly/fantasy_scores':
-        $page = 'weekly.php';
-        $subpage = 'fantasy_scores.php';
-        $activePage = 'weekly';
-        $activeSubpage = 'fantasy_scores';
+    case 'weeklyScores':
+        $page = 'weekly_scores.php';
+        $activePage = 'weeklyScores';
         break;
-    case 'weekly/fantasy_matches';
-        $page = 'weekly.php';
-        $subpage = 'fantasy_matches.php';
-        $activePage = 'weekly';
-        $activeSubpage = 'fantasy_matches';
+    case 'fantasyOverall';
+        $page = 'fantasy_overall.php';
+        $activePage = 'fantasyOverall';
         break;
-    case 'weekly/team_stats':
-    case 'weekly/teams':
-        $page = 'weekly.php';
-        $subpage = 'team_stats.php';
-        $activePage = 'weekly';
-        $activeSubpage = 'teams';
+    default:
+        $page = 'fantasy_matches.php';
+        $activePage = 'weeklyFantasy';
         break;
-    case 'overall':
-    case 'overall/fantasy':
-	$page = 'weekly.php';
-	$subpage = 'fantasy_overall.php';
-	$activePage = 'overall';
-	$activeSubpage = 'overal_fantasy';
-	break;
 }
 
-$page = 'weekly.php';
+//$page = 'weekly.php';
 
 require_once 'body.php';
 

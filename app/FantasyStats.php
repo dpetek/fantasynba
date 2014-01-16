@@ -53,6 +53,9 @@ class FantasyStats
     {
         if ($sort) {
             usort($this->players, function($p1, $p2) {
+                    if (abs($p1->getRatio() - $p2->getRatio()) < 0.0000000001) {
+                        return ($p1->getWins() > $p2->getWins()) ? -1 : 1;
+                    }
                     return ($p1->getRatio() > $p2->getRatio()) ? -1 : 1;
                 }
             );
@@ -63,6 +66,9 @@ class FantasyStats
     public function getTeams($sort = true) {
         if ($sort) {
             usort($this->teams, function($p1, $p2) {
+                    if (abs($p1->getRatio() - $p2->getRatio()) < 0.0000000001) {
+                        return ($p1->getWins() > $p2->getWins()) ? -1 : 1;
+                    }
                     return ($p1->getRatio() > $p2->getRatio()) ? -1 : 1;
                 }
             );

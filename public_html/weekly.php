@@ -1,10 +1,10 @@
-<div class="row clearfix">          
+<div class="row clearfix">
         <div class="col-md-12 column">
 <div class="row clearfix">
 	<div class="col-md-12 column">
 		<div class="page-header">
 			<h1>
-				<?php echo Helpers::getWeekString($weekId); ?> 
+				<?php echo Helpers::getWeekString($weekId); ?>
 				<?php if($weekId == WeeklyStats::currentWeekId()): ?>
 					<small> (Current week) </small>
 				<?php endif ?>
@@ -20,7 +20,7 @@
         onclick="location.href='<?php echo Helpers::getPreviousWeek($weekId) ? Helpers::buildUrl('weekly', $activeSubpage, array('weekId' => Helpers::getPreviousWeek($weekId))) : '#'; ?>';">
                 <em class="glyphicon glyphicon-arrow-left"></em> Prev
             </button>
-            <button class="btn btn-success <?php echo $weekId == WeeklyStats::currentWeekId() ? 'disabled' : ''; ?>" type="button" 
+            <button class="btn btn-success <?php echo $weekId == WeeklyStats::currentWeekId() ? 'disabled' : ''; ?>" type="button"
         onclick="location.href='<?php echo Helpers::buildUrl('weekly', $activeSubpage, array('weekId' => WeeklyStats::currentWeekId())); ?>';">
         <em class="glyphicon glyphicon-screenshot"></em>
                 This week
@@ -48,4 +48,4 @@
 </div> <!-- clearfix -->
 </div>
 </div>
- 
+

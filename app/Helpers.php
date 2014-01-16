@@ -36,14 +36,11 @@ class Helpers
         "week_04_28_2014"
     );
 
-    public static function buildUrl($page, $subpage, array $params = array())
+    public static function buildUrl($page, array $params = array())
     {
         $baseUrl = 'http://' . $_SERVER['HTTP_HOST'];
         if ($page) {
             $baseUrl = trim($baseUrl, '/') . '/' . $page;
-        }
-        if ($subpage) {
-            $baseUrl = $baseUrl . '/' . $subpage;
         }
 
         $query = http_build_query($params);
@@ -90,6 +87,15 @@ class Helpers
         $time = DateTime::createFromFormat('m_d_Y',$date);
         $end = DateTime::createFromFormat('m_d_Y',$date);
         $end->add(new DateInterval('P6D'));
+        return "<span>Week:
+                    <span class='badge'>{$time->format('m')}</span>
+                    <span class='badge'>{$time->format('d')}</span>
+                    <span class='badge'>{$time->format('Y')}</span>
+                    -
+                    <span class='badge'>{$end->format('m')}</span>
+                    <span class='badge'>{$end->format('d')}</span>
+                    <span class='badge'>{$end->format('Y')}</span>
+                </span>";
 
         return '<span class="">' . $time->format('l, m/d/Y') . '</span> - <span class="">' . $end->format('l, m/d/Y') . '</span>';
     }
@@ -97,6 +103,46 @@ class Helpers
     {
         $draw = Config::get('draw');
         return array_keys($draw);
+    }
+
+    public static function getOverallFantasyStats()
+    {
+        $playerWins = array();
+        $playerLoses = array();
+        $playerDraws = array();
+        foreach(self::getPlayers() as $player) {
+            $playerWins[$player] = 0;
+            $playerLoses[$player] = 0;
+            $playerDraws[$player] = 0;
+        }
+
+        foreach(self::$weeks as $weekId) {
+            if ($weekId == WeeklyStats::currentWeekId()) {
+                break;
+            }
+            $fantasyStats = FantasyStats::createForWeek(WeeklyStats::loadByWeekID($weekId));
+            $weekMatches = MongoHelper::getWeekFantasyMatches($weekId);
+
+            foreach($weekMatches->getMatches() as $match) {
+                $player1Stats = $fantasyStats->getForPlayer($match['player1']);
+                $player2Stats = $fantasyStats->getForPlayer($match['player2']);
+
+                if (abs($player1Stats->getRatio() - $player2Stats->getRatio()) < 0.000000001
+                    && $player1Stats->getWins() == $player2Stats->getWins()) {
+                    $playerDraws[$player1Stats->getPlayerName()] += 1;
+                    $playerDraws[$player2Stats->getPlayerName()] += 1;
+                } elseif ((abs($player1Stats->getRatio() - $player2Stats->getRatio()) < 0.000000001 && $player1Stats->getWins() > $player2Stats->getWins()) ||
+                     $player1Stats->getRatio() > $player2Stats->getRatio()) {
+                    $playerWins[$player1Stats->getPlayerName()] += 1;
+                    $playerLoses[$player2Stats->getPlayerName()] += 1;
+                } else {
+                    $playerWins[$player2Stats->getPlayerName()] += 1;
+                    $playerLoses[$player1Stats->getPlayerName()] += 1;
+                }
+            }
+        }
+        $players = self::getPlayers();
+        return new FantasyOverall($players, $playerWins, $playerLoses, $playerDraws);
     }
 }
 
