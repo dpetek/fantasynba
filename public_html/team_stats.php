@@ -1,7 +1,8 @@
 <?php $fantasyStats = FantasyStats::createForWeek(WeeklyStats::loadByWeekID($weekId)); ?>
+<br />
 <table class="table table-hover">
     <thead>
-    <tr>
+    <tr style='background-color: #333;color:#fff;'>
         <th>Team name</th>
         <th>Wins this week</th>
         <th>Loses this week</th>

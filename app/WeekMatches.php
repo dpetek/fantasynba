@@ -26,7 +26,11 @@ class WeekMatches
     {
         return $this->data['matches'];
     }
-
+    
+    public function setMatches(array $matches) 
+    {
+        $this->data['matches'] = $matches;    
+    }
 }
 
  

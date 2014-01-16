@@ -70,6 +70,28 @@ class MongoHelper
         $connection->save($object->getData());
     }
 
+    public static function removeFantasyMatch($week, $player1, $player2) 
+    {
+        $object = self::getWeekFantasyMatches($week);
+        if (!$object) return;
+
+        $matches = $object->getMatches();
+        $newMatches = array();
+
+        foreach($matches as $match) {
+                if (strtolower($match['player1']) == $player1 &&
+                    strtolower($match['player2']) == $player2) {
+                        continue;
+                    }
+
+                $newMatches[] = $match;
+            }
+
+        $object->setMatches($newMatches);
+        $connection = self::connection('matches');
+        $connection->save($object->getData());
+    }
+
     /**
      * @param $dbName
      * @return MongoCollection

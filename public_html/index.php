@@ -1,9 +1,10 @@
 <?php
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 define('__APP_PATH', realpath(__DIR__ . '/../app/'));
 define('__CONFIG_PATH', realpath(__DIR__ . '/../config/'));
-define('__HOST', $_SERVER['HTTP_HOST']);
-
+define('__HOST', '//' . $_SERVER['HTTP_HOST']);
+$__HOST = '//' . $_SERVER['HTTP_HOST'];
 //init autoloader
 
 spl_autoload_register(
@@ -19,7 +20,6 @@ Config::init(__CONFIG_PATH . '/Config.json');
 
 if (isset($_POST['post-action'])) {
     if ($_POST['post-action'] == 'add-match') {
-
         $player1 = $_POST['add-player1'];
         $player2 = $_POST['add-player2'];
         $week = $_POST['add-week'];
@@ -29,6 +29,15 @@ if (isset($_POST['post-action'])) {
         header("Location: ". $_SERVER['REQUEST_URI']);
         exit;
     }
+    if ($_POST['post-action'] == 'delete-match') {
+        $weekId = $_POST['remove-from-week-id'];
+        $player1 = $_POST['player1-name'];
+        $player2 = $_POST['player2-name'];
+        MongoHelper::removeFantasyMatch($weekId, $player1, $player2);
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit(1);
+    }
+
 }
 
 
