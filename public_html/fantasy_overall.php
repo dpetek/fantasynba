@@ -1,4 +1,8 @@
-<?php $overall = Helpers::getOverallFantasyStats()->getSorted(); ?>
+<?php
+$overallObject = Helpers::getOverallFantasyStats();
+$overall = $overallObject->getSorted();
+$overallMatches = $overallObject->getMatces();
+?>
 
 <div class="page-header">
     <h3>
@@ -40,55 +44,41 @@
             </table>
         </div>
         <div class="col-md-6 column">
-
-            <?php foreach(Helpers::$weeks as $weekId): ?>
-                <?php if ($weekId == WeeklyStats::currentWeekId()) break ?>
-                <?php $fantasyStats = FantasyStats::createForWeek(WeeklyStats::loadByWeekID($weekId)); ?>
-                <?php $weekMatches = MongoHelper::getWeekFantasyMatches($weekId); ?>
-                <table class="table table-hover">
-                    <?php foreach($weekMatches->getMatches() as $match): ?>
-                        <?php $player1Stats = $fantasyStats->getForPlayer($match['player1']); ?>
-                        <?php $player2Stats = $fantasyStats->getForPlayer($match['player2']); ?>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Player name</th>
+                        <th>Player name</th>
+                        <th>W-L-D</th>
+                    </tr>
+                </thead>
+                <?php foreach($overallMatches as $name=>$against): ?>
+                    <?php foreach($against as $againstName => $scores): ?>
                         <tr>
-                            <td style="text-align: center" class="<?php echo $player1Stats->getRatio() > $player2Stats->getRatio() ? 'success' : ''; ?>">
+                            <td class="<?php echo $scores['wins'] > $scores['loses'] ? 'success' : ''; ?>">
                                 <div class="media">
                                             <span class="pull-left">
-                                                <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($match['player1']) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+                                                <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($name) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                                             </span>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><?php echo $match['player1']; ?></h4>
+                                        <h4 class="media-heading"><?php echo $name; ?></h4>
                                     </div>
                                 </div>
-                                <ul class='list-unstyled'>
-                                    <li><span class='label label-info'><?php echo round($player1Stats->getRatio() * 100.0, 1); ?>% wins (<?php echo $player1Stats->getWins(); ?>/<?php echo $player1Stats->getWins() + $player1Stats->getLoses(); ?>)</span></li>
-                                </ul>
                             </td>
-                            <td style="text-align: center" class="success">vs</td>
-                            <td style="text-align: center" class="<?php echo $player2Stats->getRatio() > $player1Stats->getRatio() ? 'success' : ''; ?>">
+                            <td class="<?php echo $scores['loses'] > $scores['wins'] ? 'success' : ''; ?>">
                                 <div class="media">
                                             <span class="pull-left">
-                                                <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($match['player2']) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+                                                <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($againstName) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                                             </span>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><?php echo $match['player2']; ?></h4>
+                                        <h4 class="media-heading"><?php echo $againstName; ?></h4>
                                     </div>
                                 </div>
-                                <span class='label label-info'><?php echo round($player2Stats->getRatio() * 100.0, 1); ?>% wins (<?php echo $player2Stats->getWins(); ?>/<?php echo $player2Stats->getWins() + $player2Stats->getLoses(); ?>)</span>
                             </td>
-                            <?php if (isset($_COOKIE['spacemonkey'])): ?>
-                                <td>
-                                    <form role='form' method='post'>
-                                        <input type='hidden' name='post-action' value='delete-match'>
-                                        <input type='hidden' name='player1-name' value='<?php echo strtolower($match['player1']); ?>' />
-                                        <input type='hidden' name='player2-name' value='<?php echo strtolower($match['player2']); ?>' />
-                                        <input type='hidden' name='remove-from-week-id' value='<?php echo $weekId; ?>' />
-                                        <input type='submit' value='X' />
-                                    </form>
-                                </td>
-                            <?php endif ?>
+                            <td><?php echo $scores['wins'] . '-' . $scores['loses'] . '-' . $scores['draws']; ?></td>
                         </tr>
                     <?php endforeach ?>
-                </table>
-            <?php endforeach ?>
+                <?php endforeach ?>
+            </table>
         </div>
 </div>

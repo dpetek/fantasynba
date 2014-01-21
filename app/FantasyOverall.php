@@ -3,7 +3,8 @@
 class FantasyOverall
 {
     private $stats = array();
-    public function __construct($players, $playersWins, $playersLoses, $playersDraws)
+    private $matches = array();
+    public function __construct($players, $playersWins, $playersLoses, $playersDraws, $playerMatches)
     {
         foreach($players as $player)
         {
@@ -15,6 +16,7 @@ class FantasyOverall
                 "ratio" => 1.0 * $playersWins[$player] / ($playersWins[$player] + $playersLoses[$player] + $playersDraws[$player])
             );
         }
+        $this->matches = $playerMatches;
     }
 
     public function getSorted()
@@ -27,5 +29,10 @@ class FantasyOverall
             }
         );
         return $this->stats;
+    }
+
+    public function getMatces()
+    {
+        return $this->matches;
     }
 }

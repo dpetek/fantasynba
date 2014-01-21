@@ -107,6 +107,8 @@ class Helpers
 
     public static function getOverallFantasyStats()
     {
+
+        $playerMatches = array();
         $playerWins = array();
         $playerLoses = array();
         $playerDraws = array();
@@ -114,6 +116,21 @@ class Helpers
             $playerWins[$player] = 0;
             $playerLoses[$player] = 0;
             $playerDraws[$player] = 0;
+            foreach(self::getPlayers() as $player2) {
+                if ($player == $player2) continue;
+                if ($player < $player2) {
+                    $p1 = $player;
+                    $p2 = $player2;
+                } else {
+                    $p1 = $player2;
+                    $p2 = $player;
+                }
+                $playerMatches[$p1][$p2] = array(
+                    'wins' => 0,
+                    'loses' => 0,
+                    'draws' => 0
+                );
+            }
         }
 
         foreach(self::$weeks as $weekId) {
@@ -131,18 +148,33 @@ class Helpers
                     && $player1Stats->getWins() == $player2Stats->getWins()) {
                     $playerDraws[$player1Stats->getPlayerName()] += 1;
                     $playerDraws[$player2Stats->getPlayerName()] += 1;
+                    if ($player1Stats->getPlayerName() < $player2Stats->getPlayerName()) {
+                        $playerMatches[$player1Stats->getPlayerName()][$player2Stats->getPlayerName()]['draws'] += 1;
+                    } else {
+                        $playerMatches[$player2Stats->getPlayerName()][$player1Stats->getPlayerName()]['draws'] += 1;
+                    }
                 } elseif ((abs($player1Stats->getRatio() - $player2Stats->getRatio()) < 0.000000001 && $player1Stats->getWins() > $player2Stats->getWins()) ||
                      $player1Stats->getRatio() > $player2Stats->getRatio()) {
                     $playerWins[$player1Stats->getPlayerName()] += 1;
                     $playerLoses[$player2Stats->getPlayerName()] += 1;
+                    if ($player1Stats->getPlayerName() < $player2Stats->getPlayerName()) {
+                        $playerMatches[$player1Stats->getPlayerName()][$player2Stats->getPlayerName()]['wins'] += 1;
+                    } else {
+                        $playerMatches[$player2Stats->getPlayerName()][$player1Stats->getPlayerName()]['loses'] += 1;
+                    }
                 } else {
                     $playerWins[$player2Stats->getPlayerName()] += 1;
                     $playerLoses[$player1Stats->getPlayerName()] += 1;
+                    if ($player1Stats->getPlayerName() < $player2Stats->getPlayerName()) {
+                        $playerMatches[$player1Stats->getPlayerName()][$player2Stats->getPlayerName()]['loses'] += 1;
+                    } else {
+                        $playerMatches[$player2Stats->getPlayerName()][$player1Stats->getPlayerName()]['wins'] += 1;
+                    }
                 }
             }
         }
         $players = self::getPlayers();
-        return new FantasyOverall($players, $playerWins, $playerLoses, $playerDraws);
+        return new FantasyOverall($players, $playerWins, $playerLoses, $playerDraws, $playerMatches);
     }
 }
 
