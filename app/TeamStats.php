@@ -68,7 +68,10 @@ class TeamStats
     {
         return MongoHelper::loadTeamById($this->teamId);
     }
-
+    public function getTeam()
+    {
+        return MongoHelper::loadTeamById($this->getTeamId());
+    }
 }
 
  

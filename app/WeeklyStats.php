@@ -14,8 +14,10 @@ class WeeklyStats
 
             foreach($day['event'] as $event) {
                 $tmp = $event;
-                $tmp['home_team'] = new Team($event['home_team']);
-                $tmp['away_team'] = new Team($event['away_team']);
+                $homeTeam = MongoHelper::loadTeamById($event['home_team']['team_id']);
+                $awayTeam = MongoHelper::loadTeamById($event['away_team']['team_id']);
+                $tmp['home_team'] = $homeTeam;
+                $tmp['away_team'] = $awayTeam;
                 $eventInfo = MongoHelper::getEvent($event['event_id']);
 
                 if ($eventInfo) {

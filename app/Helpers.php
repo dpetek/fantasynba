@@ -48,6 +48,11 @@ class Helpers
         return $baseUrl . '?' . $query;
     }
 
+    public static function buildTeamStatsLink($teamId)
+    {
+        return self::buildUrl('teamStats', array('team_id' => $teamId));
+    }
+
     public static function getRoute($url)
     {
         $parts = parse_url($url);
@@ -176,5 +181,10 @@ class Helpers
         $players = self::getPlayers();
         return new FantasyOverall($players, $playerWins, $playerLoses, $playerDraws, $playerMatches);
     }
+    public static function teamString(Team $team)
+    {
+        return $team->getFullName() . ' <small>[$' . $team->getCost() . '](' .$team->getStats()['won'] . '-' . $team->getStats()['lost'] . ')</small>';
+    }
+
 }
 

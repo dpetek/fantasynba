@@ -148,4 +148,31 @@ class XMLStatsAPI{
             $content = stream_get_contents($fh);
             return json_decode($content, true);
         }
+
+        public function getTeamInfo($teamId)
+        {
+            // Pass method, format, and parameters to build request url
+            $url = 'https://' . $this->host . '/nba/team-stats.json?team_id=' . $teamId;
+            // Set the User Agent, Authorization header and allow gzip
+            $default_opts = array(
+                'http' => array(
+                    'user_agent' => self::USER_AGENT,
+                    'header'     => array(
+                        'Accept-Encoding: gzip',
+                        'Authorization: Bearer ' . $this->accessToken
+                    )
+                )
+            );
+            stream_context_get_default($default_opts);
+            $file = 'compress.zlib://' . $url;
+            try {
+                $fh = @fopen($file, 'rb');
+            } catch (Exception $e) {
+                return array();
+            }
+            if (!$fh) return array();
+
+            $content = stream_get_contents($fh);
+            return json_decode($content, true);
+        }
 }

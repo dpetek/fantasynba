@@ -33,6 +33,19 @@ class MongoHelper
 	
 	}
 
+    public static function loadTeams()
+    {
+        $connection = self::connection('teams');
+
+        $cursor = $connection->find();
+        $teams[] = array();
+        foreach($cursor as $teamData)
+        {
+            $teams[] = new Team($teamData);
+        }
+        return $teams;
+    }
+
     public static function loadTeamById($teamId)
     {
         $conneciton = self::connection('teams');
@@ -90,6 +103,19 @@ class MongoHelper
         $object->setMatches($newMatches);
         $connection = self::connection('matches');
         $connection->save($object->getData());
+    }
+
+    public static function saveTeam(Team $team)
+    {
+        $data = $team->getData();
+        $connection = self::connection('teams');
+
+        $connection->update(
+            array(
+                'team_id' => $team->getTeamId()
+            ),
+            $data
+        );
     }
 
     /**

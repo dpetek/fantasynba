@@ -67,6 +67,10 @@ switch($route) {
         $page = 'fantasy_overall.php';
         $activePage = 'fantasyOverall';
         break;
+    case 'teamStats':
+        $page = 'team_stats.php';
+        $activePage = 'teamStats';
+        break;
     default:
         $page = 'fantasy_matches.php';
         $activePage = 'weeklyFantasy';

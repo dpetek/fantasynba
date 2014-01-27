@@ -20,13 +20,17 @@
                                 <span class='' style="min-width: 120px; display:inline-block">
                                     <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['home_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px;'/>
                                 </span>
-                                <?php echo $event['home_team']->getFullName(); ?>
+                                <a href="<?php echo Helpers::buildTeamStatsLink($event['home_team']->getTeamId()); ?>" >
+                                    <?php echo Helpers::teamString($event['home_team']); ?>
+                                </a>
                             </td>
                             <td class="<?php echo (isset($event['info']) && $event['info'] instanceof Event && $event['info']->getAwayScore() > $event['info']->getHomeScore()) ? 'success' : ''; ?>">
                                 <span class='' style="min-width: 120px; display:inline-block">
                                     <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['away_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                                 </span>
-                                <?php echo $event['away_team']->getFullName(); ?>
+                                <a href="<?php echo Helpers::buildTeamStatsLink($event['away_team']->getTeamId()); ?>" >
+                                    <?php echo Helpers::teamString($event['away_team']); ?>
+                                </a>
                             </td>
                             <td>
                                 <?php if (isset($event['info']) && $event['info'] instanceof Event): ?>
@@ -64,7 +68,9 @@
                             <span class='' style="min-width: 120px; display:inline-block">
                                 <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($team->getTeamInfo()->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                             </span>
-                            <?php echo $team->getTeamInfo()->getFullName(); ?>
+                            <a href="<?php echo Helpers::buildTeamStatsLink($team->getTeamId()); ?>" >
+                                <?php echo Helpers::teamString($team->getTeamInfo()); ?>
+                            </a>
                         </td>
                         <td><?php echo $team->getWins(); ?></td>
                         <td><?php echo $team->getLoses(); ?></td>
