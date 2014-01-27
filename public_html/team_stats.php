@@ -1,4 +1,5 @@
 <?php $team = MongoHelper::loadTeamById($_GET['team_id']); ?>
+<?php $stats = $team->getStats(); ?>
 
 <div class="container">
     <div class="row clearfix">
@@ -16,27 +17,27 @@
             <table class="table table-hover">
                 <tr>
                     <td>Wins</td>
-                    <td><?php echo $team->getStats()['won']; ?></td>
+                    <td><?php echo $stats['won']; ?></td>
                 </tr>
                 <tr>
                     <td>Loses</td>
-                    <td><?php echo $team->getStats()['lost']; ?></td>
+                    <td><?php echo $stats['lost']; ?></td>
                 </tr>
                 <tr>
                     <td>Total points</td>
-                    <td><?php echo $team->getStats()['stats']['points']; ?></td>
+                    <td><?php echo $stats['stats']['points']; ?></td>
                 </tr>
                 <tr>
                     <td>Field goal percentage</td>
-                    <td><?php echo $team->getStats()['stats']['field_goal_percentage_string']; ?>%</td>
+                    <td><?php echo $stats['stats']['field_goal_percentage_string']; ?>%</td>
                 </tr>
                 <tr>
                     <td>Free throw percentage</td>
-                    <td><?php echo $team->getStats()['stats']['free_throw_percentage_string']; ?>%</td>
+                    <td><?php echo $stats['stats']['free_throw_percentage_string']; ?>%</td>
                 </tr>
                 <tr>
                     <td>Three point percentage</td>
-                    <td><?php echo $team->getStats()['stats']['three_point_field_goal_percentage_string']; ?>%</td>
+                    <td><?php echo $stats['stats']['three_point_field_goal_percentage_string']; ?>%</td>
                 </tr>
             </table>
         </div>
