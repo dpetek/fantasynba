@@ -184,7 +184,7 @@ class Helpers
     public static function teamString(Team $team)
     {
         $stats = $team->getStats();
-        return $team->getFullName() . ' <small>[$' . $team->getCost() . '](' .$stats['won'] . '-' . $stats['lost'] . ')</small>';
+        return $team->getFullName() . ' <span class="badge">$' . $team->getCost() . '</span><span class="badge">' .$stats['won'] . '-' . $stats['lost'] . '</span>';
     }
 
 }
