@@ -64,8 +64,8 @@
                     <td>$<?php echo $team->getCost(); ?></td>
                 </tr>
                 <tr>
-                    <td>Payout (cost * (wins / total_games)):</td>
-                    <td>$<?php echo $team->getPayout(); ?></td>
+                    <td>Improvement:</td>
+                    <td><?php echo $team->getPayout(); ?>%</td>
                 </tr>
             </table>
         </div>

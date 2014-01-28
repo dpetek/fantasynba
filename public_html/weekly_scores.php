@@ -17,20 +17,36 @@
                     <?php foreach($day['event'] as $event): ?>
                         <tr>
                             <td class="<?php echo (isset($event['info']) && $event['info'] instanceof Event && $event['info']->getHomeScore() > $event['info']->getAwayScore()) ? 'success' : ''; ?>">
-                                <span class='' style="min-width: 120px; display:inline-block">
-                                    <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['home_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px;'/>
-                                </span>
-                                <a href="<?php echo Helpers::buildTeamStatsLink($event['home_team']->getTeamId()); ?>" >
-                                    <?php echo Helpers::teamString($event['home_team']); ?>
-                                </a>
+                                
+                                 <div class="media">
+                                    <span class="pull-left">
+                                        <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['home_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+                                    </span>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="<?php echo Helpers::buildTeamStatsLink($event['home_team']->getTeamId()); ?>" >
+                                                <?php echo Helpers::teamString($event['home_team']); ?>
+                                            </a>
+
+                                        </h4>
+                                    </div>
+                                </div>
                             </td>
                             <td class="<?php echo (isset($event['info']) && $event['info'] instanceof Event && $event['info']->getAwayScore() > $event['info']->getHomeScore()) ? 'success' : ''; ?>">
-                                <span class='' style="min-width: 120px; display:inline-block">
-                                    <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['away_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
-                                </span>
-                                <a href="<?php echo Helpers::buildTeamStatsLink($event['away_team']->getTeamId()); ?>" >
-                                    <?php echo Helpers::teamString($event['away_team']); ?>
-                                </a>
+                                                             <div class="media">
+                                    <span class="pull-left">
+                                        <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['away_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+                                    </span>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="<?php echo Helpers::buildTeamStatsLink($event['away_team']->getTeamId()); ?>" >
+                                                <?php echo Helpers::teamString($event['away_team']); ?>
+                                            </a>
+
+                                        </h4>
+                                    </div>
+                                </div>
+
                             </td>
                             <td>
                                 <?php if (isset($event['info']) && $event['info'] instanceof Event): ?>
@@ -65,12 +81,20 @@
                 <?php foreach($fantasyStats->getTeams() as $team): ?>
                     <tr>
                         <td>
-                            <span class='' style="min-width: 120px; display:inline-block">
-                                <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($team->getTeamInfo()->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
-                            </span>
-                            <a href="<?php echo Helpers::buildTeamStatsLink($team->getTeamId()); ?>" >
-                                <?php echo Helpers::teamString($team->getTeamInfo()); ?>
-                            </a>
+
+                                                             <div class="media">
+                                    <span class="pull-left">
+                                        <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($team->getTeamInfo()->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+                                    </span>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="<?php echo Helpers::buildTeamStatsLink($team->getTeamInfo()->getTeamId()); ?>" >
+                                                <?php echo Helpers::teamString($team->getTeamInfo()); ?>
+                                            </a>
+
+                                        </h4>
+                                    </div>
+                                </div>
                         </td>
                         <td><?php echo $team->getWins(); ?></td>
                         <td><?php echo $team->getLoses(); ?></td>

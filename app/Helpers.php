@@ -149,8 +149,7 @@ class Helpers
                 $player1Stats = $fantasyStats->getForPlayer($match['player1']);
                 $player2Stats = $fantasyStats->getForPlayer($match['player2']);
 
-                if (abs($player1Stats->getRatio() - $player2Stats->getRatio()) < 0.000000001
-                    && $player1Stats->getWins() == $player2Stats->getWins()) {
+                if (abs($player1Stats->getRatio() - $player2Stats->getRatio()) < 0.000000001) {
                     $playerDraws[$player1Stats->getPlayerName()] += 1;
                     $playerDraws[$player2Stats->getPlayerName()] += 1;
                     if ($player1Stats->getPlayerName() < $player2Stats->getPlayerName()) {
@@ -184,6 +183,10 @@ class Helpers
     public static function teamString(Team $team)
     {
         $stats = $team->getStats();
+        return '<ul class="list-unstyled">' .
+                  '<li>' . $team->getFullName() . '</li>' . 
+                  '<li>' . ' <span class="badge" style="background-color: #088A85">$' . $team->getCost() . '</span><span class="badge" style="background-color: #088A85">' .$stats['won'] . '-' . $stats['lost'] . '</span>' . '</li>' .
+                '</ul>'; 
         return $team->getFullName() . ' <span class="badge">$' . $team->getCost() . '</span><span class="badge">' .$stats['won'] . '-' . $stats['lost'] . '</span>';
     }
 
