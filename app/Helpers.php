@@ -53,6 +53,11 @@ class Helpers
         return self::buildUrl('teamStats', array('team_id' => $teamId));
     }
 
+    public static function buildPlayerStatsLink($linkName)
+    {
+        return self::buildUrl('playerStats', array('player' => $linkName));
+    }
+
     public static function getRoute($url)
     {
         $parts = parse_url($url);
@@ -188,6 +193,36 @@ class Helpers
                   '<li>' . ' <span class="badge" style="background-color: #088A85">$' . $team->getCost() . '</span><span class="badge" style="background-color: #088A85">' .$stats['won'] . '-' . $stats['lost'] . '</span>' . '</li>' .
                 '</ul>'; 
         return $team->getFullName() . ' <span class="badge">$' . $team->getCost() . '</span><span class="badge">' .$stats['won'] . '-' . $stats['lost'] . '</span>';
+    }
+
+    public static function sortTeamsByPayout($teams)
+    {
+        $filter = array();
+        foreach($teams as $team) {
+            if ($team instanceof Team) $filter[] = $team;
+        }
+        usort($filter, function($t1, $t2) {
+                return ($t1->getPayout() > $t2->getPayout()) ? -1 : 1;
+            }
+        );
+        return $filter;
+    }
+
+    public static function sortTeamsByRatio($teams)
+    {
+        $filter = array();
+        foreach($teams as $team) {
+            if ($team instanceof Team) $filter[] = $team;
+        }
+        usort($filter, function($t1, $t2) {
+                $s1 = $t1->getStats();
+                $s2 = $t2->getStats();
+                $r1 = 1.0 * intval($s1['won']) / (intval($s1['won'] + intval($s1['lost'])));
+                $r2 = 1.0 * intval($s2['won']) / (intval($s2['won'] + intval($s2['lost'])));
+                return ($r1 > $r2) ? -1 : 1;
+            }
+        );
+        return $filter;
     }
 
 }

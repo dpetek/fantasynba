@@ -22,7 +22,9 @@
                                         <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($match['player1']) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                                     </span>
                                     <div class="media-body">
+                                        <a href="<?php echo Helpers::buildPlayerStatsLink($match['player1']); ?>" >
                                         <h4 class="media-heading"><?php echo $match['player1']; ?></h4>
+                                        </a>
                                     </div>
                                 </div>
                                 <ul class='list-unstyled'>
@@ -36,7 +38,9 @@
                                         <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($match['player2']) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                                     </span>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><?php echo $match['player2']; ?></h4>
+                                        <a href="<?php echo Helpers::buildPlayerStatsLink($match['player1']); ?>" >
+                                            <h4 class="media-heading"><?php echo $match['player2']; ?></h4>
+                                        </a>
                                     </div>
                                 </div>
                                 <span class='label label-info'><?php echo round($player2Stats->getRatio() * 100.0, 1); ?>% wins (<?php echo $player2Stats->getWins(); ?>/<?php echo $player2Stats->getWins() + $player2Stats->getLoses(); ?>)</span>
@@ -80,7 +84,9 @@
                                         <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($player->getPlayerName()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                                     </span>
                                     <div class="media-body">
+                                        <a href="<?php echo Helpers::buildPlayerStatsLink($player->getPlayerName()); ?>">
                                         <h4 class="media-heading"><?php echo $player->getPlayerName(); ?></h4>
+                                        </a>
                                     </div>
                                 </div>
                             </td>

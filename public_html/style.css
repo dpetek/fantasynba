@@ -1,5 +1,8 @@
 body{}
-
+body a{
+	color: #333333;
+	text-decoration: underline;
+}
 .denis{
 	background-color: black;
 }

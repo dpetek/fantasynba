@@ -44,6 +44,17 @@
                     <li class="<?php echo $activePage=="weeklyFantasy" ? "active" : "";?>"><a href="<?php echo Helpers::buildUrl('weeklyFantasy', array('weekId' => $weekId)); ?>">Fantasy this week</a></li>
 					<li class="<?php echo $activePage=="weeklyScores" ? "active" : ""; ?>"><a href="<?php echo Helpers::buildUrl('weeklyScores', array('weekId' => $weekId)); ?>">Weekly scores</a></li>
                     <li class="<?php echo $activePage=="fantasyOverall" ? "active" : ""; ?>"><a href="<?php echo Helpers::buildUrl('fantasyOverall', array('weekId' => $weekId)); ?>">Fantasy overall</a></li>
+                    <li class="dropdown <?php echo $activePage=='stats' ? 'active' : ''; ?>">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stats<strong class="caret"></strong></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="<?php echo Helpers::buildUrl('payoutStats', array()); ?>">Teams by payout</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo Helpers::buildUrl('ratioStats', array()); ?>">Teams by ratio</a>
+                            </li>
+                        </ul>
+                    </li>
 <!--                    <li class=""><a href="Scores overall">Scoress overall</a></li>-->
 				</ul>
                 <ul class="nav navbar-nav navbar-right">

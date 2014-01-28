@@ -20,7 +20,8 @@
                                 
                                  <div class="media">
                                     <span class="pull-left">
-                                        <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['home_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+                                        <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['home_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px;'/>
+                                        <img alt="140x140" src="<?php echo $__HOST . '/img/teams/' . strtolower($event['home_team']->getTeamId()) . '.gif'; ?>" class="img-circle" style='width:48px;height:48px;margin-left: -25px;'/>
                                     </span>
                                     <div class="media-body">
                                         <h4 class="media-heading">
@@ -36,6 +37,7 @@
                                                              <div class="media">
                                     <span class="pull-left">
                                         <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($event['away_team']->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+                                        <img alt="140x140" src="<?php echo $__HOST . '/img/teams/' . strtolower($event['away_team']->getTeamId()) . '.gif'; ?>" class="img-circle" style='width:48px;height:48px;margin-left: -25px'/>
                                     </span>
                                     <div class="media-body">
                                         <h4 class="media-heading">
@@ -82,9 +84,10 @@
                     <tr>
                         <td>
 
-                                                             <div class="media">
+                                <div class="media">
                                     <span class="pull-left">
-                                        <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($team->getTeamInfo()->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
+                                        <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($team->getTeamInfo()->getBackplanePlayer()) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px;'/>
+                                        <img alt="140x140" src="<?php echo $__HOST . '/img/teams/' . strtolower($team->getTeamId()) . '.gif'; ?>" class="img-circle" style='width:48px;height:48px;margin-left: -25px;'/>
                                     </span>
                                     <div class="media-body">
                                         <h4 class="media-heading">

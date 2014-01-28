@@ -31,7 +31,9 @@ $overallMatches = $overallObject->getMatces();
                                                 <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($player['name']) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                                             </span>
                                 <div class="media-body">
+                                    <a href="<?php echo Helpers::buildPlayerStatsLink($player['name']); ?>">
                                     <h4 class="media-heading"><?php echo $player['name']; ?></h4>
+                                    </a>
                                 </div>
                             </div>
                         </td>
@@ -61,7 +63,9 @@ $overallMatches = $overallObject->getMatces();
                                                 <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($name) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                                             </span>
                                     <div class="media-body">
+                                        <a href="<?php echo Helpers::buildPlayerStatsLink($name); ?>">
                                         <h4 class="media-heading"><?php echo $name; ?></h4>
+                                        </a>
                                     </div>
                                 </div>
                             </td>
@@ -71,6 +75,7 @@ $overallMatches = $overallObject->getMatces();
                                                 <img alt="140x140" src="<?php echo $__HOST . '/img/' . strtolower($againstName) . '.jpg'; ?>" class="img-circle" style='width:48px;height:48px'/>
                                             </span>
                                     <div class="media-body">
+                                        <a href="<?php echo Helpers::buildPlayerStatsLink($name); ?>">
                                         <h4 class="media-heading"><?php echo $againstName; ?></h4>
                                     </div>
                                 </div>
