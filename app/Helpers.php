@@ -225,5 +225,21 @@ class Helpers
         return $filter;
     }
 
+    public static function playerTotal($name)
+    {
+        $draw = Config::get('draw');
+        $won = 0;
+        $lost = 0;
+        foreach($draw[ucfirst($name)] as $teamId) {
+            $team = MongoHelper::loadTeamById($teamId);
+            $stats = $team->getStats();
+            $won += intval($stats['won']);
+            $lost += intval($stats['lost']);
+        }
+        return array(
+            'won' => $won,
+            'lost' => $lost
+        );
+    }
 }
 

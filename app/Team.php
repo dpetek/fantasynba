@@ -51,7 +51,7 @@ class Team
     public function getPayout()
     {
         $payedRatio = 1.0 * $this->getCost() / 50.0;
-        $winRatio = intval($this->data['stats']['won']) / (intval($this->data['stats']['won']) + intval($this->data['stats']['lost']));
+        $winRatio = 1.0 * intval($this->data['stats']['won']) / (intval($this->data['stats']['won']) + intval($this->data['stats']['lost']));
         return round(100.0 * ($winRatio / $payedRatio), 2);
     }
 

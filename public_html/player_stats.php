@@ -1,9 +1,26 @@
 <?php $playerName = strtolower($_GET['player']); ?>
 <?php $draw = Config::get('draw'); ?>
+<?php $total = Helpers::playerTotal($playerName); ?>
 <h3>
     <?php echo ucfirst($playerName); ?>
 </h3>
 <hr />
+
+<h4>Total</h4>
+<table class = 'table table-hover'>
+    <thead>
+        <tr>
+            <th>Won</th>
+            <th>Lost</th>
+            <th>Ratio</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><?php echo $total['won']; ?></td>
+        <td><?php echo $total['lost']; ?></td>
+        <td><?php echo round(1.0 * $total['won'] / ($total['won'] + $total['lost']), 2); ?></td>
+    </tr>
+</table>
 
 <h4>Teams</h4>
 <table class="table table-hover">
