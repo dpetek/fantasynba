@@ -150,6 +150,10 @@ class Helpers
             $fantasyStats = FantasyStats::createForWeek(WeeklyStats::loadByWeekID($weekId));
             $weekMatches = MongoHelper::getWeekFantasyMatches($weekId);
 
+            if (!$weekMatches) {
+                continue;
+            }
+
             foreach($weekMatches->getMatches() as $match) {
                 $player1Stats = $fantasyStats->getForPlayer($match['player1']);
                 $player2Stats = $fantasyStats->getForPlayer($match['player2']);
